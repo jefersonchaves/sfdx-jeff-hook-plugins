@@ -1,13 +1,13 @@
-jeff-sfdx-hook-plugins
+sfdx-jeff-hook-plugins
 ======================
 
 Salesforce CLI hooks to perform deployment of package after org creation
 
-[![Version](https://img.shields.io/npm/v/jeff-sfdx-hook-plugins.svg)](https://npmjs.org/package/jeff-sfdx-hook-plugins)
-![Continuous Integration](https://github.com/jefersonchaves/jeff-sfdx-hook-plugins/workflows/Continuous%20Integration/badge.svg)
-[![Codecov](https://codecov.io/gh/jefersonchaves/jeff-sfdx-hook-plugins/branch/master/graph/badge.svg)](https://codecov.io/gh/jefersonchaves/jeff-sfdx-hook-plugins)
-[![Downloads/week](https://img.shields.io/npm/dw/jeff-sfdx-hook-plugins.svg)](https://npmjs.org/package/jeff-sfdx-hook-plugins)
-[![License](https://img.shields.io/npm/l/jeff-sfdx-hook-plugins.svg)](https://github.com/jefersonchaves/jeff-sfdx-hook-plugins/blob/master/package.json)
+[![Version](https://img.shields.io/npm/v/sfdx-jeff-hook-plugins.svg)](https://npmjs.org/package/sfdx-jeff-hook-plugins)
+![Continuous Integration](https://github.com/jefersonchaves/sfdx-jeff-hook-plugins/workflows/Continuous%20Integration/badge.svg)
+[![Codecov](https://codecov.io/gh/jefersonchaves/sfdx-jeff-hook-plugins/branch/master/graph/badge.svg)](https://codecov.io/gh/jefersonchaves/sfdx-jeff-hook-plugins)
+[![Downloads/week](https://img.shields.io/npm/dw/sfdx-jeff-hook-plugins.svg)](https://npmjs.org/package/sfdx-jeff-hook-plugins)
+[![License](https://img.shields.io/npm/l/sfdx-jeff-hook-plugins.svg)](https://github.com/jefersonchaves/sfdx-jeff-hook-plugins/blob/master/package.json)
 
 <!-- toc -->
 
@@ -15,11 +15,11 @@ Salesforce CLI hooks to perform deployment of package after org creation
 <!-- install -->
 <!-- usage -->
 ```sh-session
-$ npm install -g jeff-sfdx-hook-plugins
+$ npm install -g sfdx-jeff-hook-plugins
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-jeff-sfdx-hook-plugins/0.0.1 darwin-x64 node-v12.18.3
+sfdx-jeff-hook-plugins/0.0.1 darwin-x64 node-v12.18.3
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND
@@ -47,7 +47,7 @@ To build the plugin locally, make sure to have yarn installed and run the follow
 
 ```
 Clone the repository
-  $ git clone https://github.com/jefersonchaves/jeff-sfdx-hook-plugins/
+  $ git clone https://github.com/jefersonchaves/sfdx-jeff-hook-plugins/
 Install the dependencies and compile
   $ yarn install
   $ yarn prepack

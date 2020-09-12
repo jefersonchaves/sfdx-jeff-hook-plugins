@@ -1,9 +1,9 @@
 {
-  "name": "jeff-sfdx-hook-plugins",
+  "name": "sfdx-jeff-hook-plugins",
   "description": "Salesforce CLI hooks to perform deployment of package after org creation made by Jeferson Chaves.",
   "version": "0.0.1",
   "author": "Jeferson Chaves",
-  "bugs": "https://github.com/jefersonchaves/jeff-sfdx-hook-plugins/issues",
+  "bugs": "https://github.com/jefersonchaves/sfdx-jeff-hook-plugins/issues",
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
@@ -36,7 +36,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/jefersonchaves/jeff-sfdx-hook-plugins",
+  "homepage": "https://github.com/jefersonchaves/sfdx-jeff-hook-plugins",
   "keywords": [
     "sfdx-plugin"
   ],
@@ -51,7 +51,7 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "jefersonchaves/jeff-sfdx-hook-plugins",
+  "repository": "jefersonchaves/sfdx-jeff-hook-plugins",
   "scripts": {
     "lint": "tslint --project . --config tslint.json --format stylish",
     "postpack": "rm -f oclif.manifest.json",
