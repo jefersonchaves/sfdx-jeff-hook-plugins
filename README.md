@@ -29,6 +29,34 @@ USAGE
 <!-- commands -->
 
 <!-- commandsstop -->
+
+## Getting Started
+
+To use, install the [Salesforce CLI](https://developer.salesforce.com/tools/sfdxcli) and run the following commands.
+
+```
+Verify the CLI is installed
+  $ sfdx (-v | --version)
+Install the metadata-hook-demo plugin
+  $ sfdx plugins:install metadata-hook-demo
+To run a command
+  $ sfdx [command]
+```
+
+To build the plugin locally, make sure to have yarn installed and run the following commands:
+
+```
+Clone the repository
+  $ git clone https://github.com/jefersonchaves/jeff-sfdx-hook-plugins/
+Install the dependencies and compile
+  $ yarn install
+  $ yarn prepack
+Link your plugin to the sfdx cli
+  $ sfdx plugins:link
+To verify
+  $ sfdx plugins
+```
+
 <!-- debugging-your-plugin -->
 # Debugging your plugin
 We recommend using the Visual Studio Code (VS Code) IDE for your plugin development. Included in the `.vscode` directory of this plugin is a `launch.json` config file, which allows you to attach a debugger to the node process when running your commands.

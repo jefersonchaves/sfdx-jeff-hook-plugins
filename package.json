@@ -28,7 +28,7 @@
     "tslint": "^5"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=10.0.0"
   },
   "files": [
     "/lib",
@@ -44,10 +44,8 @@
   "oclif": {
     "commands": "./lib/commands",
     "bin": "sfdx",
-    "topics": {
-      "hello": {
-        "description": "Commands to say hello."
-      }
+    "hooks": {
+      "postorgcreate": "./lib/hooks/postorgcreate/installPackages"
     },
     "devPlugins": [
       "@oclif/plugin-help"
