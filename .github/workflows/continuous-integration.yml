@@ -20,4 +20,5 @@ jobs:
         run: ./node_modules/.bin/nyc report --reporter text-lcov > coverage.lcov
       - name: Upload Code Coverage
         uses: codecov/codecov-action@v1
+        with:
           file: coverage.lcov
