@@ -1,5 +1,6 @@
-import { Command, Hook } from "@oclif/config";
+import { Command, Hook } from '@oclif/config';
 
+// tslint:disable-next-line: no-any
 type HookFunction = (this: Hook.Context, options: HookOptions) => any;
 
 type PostOrgCreateResult = {
@@ -22,11 +23,11 @@ type HookOptions = {
   result?: PostOrgCreateResult;
 };
 
-export const hook: HookFunction = async function (options) {
-  console.log("PostOrgCreate Hook Running");
+export const hook: HookFunction = async options => {
+  console.log('PostOrgCreate Hook Running');
 
   if (options.result) {
-    console.log("Username created: " + options.result.username);
+    console.log('Username created: ' + options.result.username);
   }
 };
 
