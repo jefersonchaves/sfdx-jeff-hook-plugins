@@ -37,8 +37,8 @@ To use, install the [Salesforce CLI](https://developer.salesforce.com/tools/sfdx
 ```
 Verify the CLI is installed
   $ sfdx (-v | --version)
-Install the metadata-hook-demo plugin
-  $ sfdx plugins:install metadata-hook-demo
+Install the plugin
+  $ sfdx plugins:install sfdx-jeff-hook-plugins
 To run a command
   $ sfdx [command]
 ```
