@@ -10,7 +10,7 @@ Salesforce CLI hooks to perform deployment of package after org creation
 [![License](https://img.shields.io/npm/l/jeff-sfdx-hook-plugins.svg)](https://github.com/jefersonchaves/jeff-sfdx-hook-plugins/blob/master/package.json)
 
 <!-- toc -->
-* [Debugging your plugin](#debugging-your-plugin)
+
 <!-- tocstop -->
 <!-- install -->
 <!-- usage -->
