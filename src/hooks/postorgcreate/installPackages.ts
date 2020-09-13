@@ -33,23 +33,26 @@ export const hook: HookFunction = async options => {
   console.log('PostOrgCreate Hook Running');
 
   if (options.result) {
-    cli.action.start('Installing packages');
-
     const project = await readSfdxProject();
 
     if (project.packageAliases) {
+      console.log('Installing packages');
       for (const packageAlias of Object.keys(project.packageAliases)) {
-        console.log('Installing ' + packageAlias);
         // TODO: retrieve installation key, maybe config to allow specialized retrieval?
+        // This won't work on VsCode
+        const installationKey = await cli.prompt('What is the installation key for ' + packageAlias + '?', {type: 'mask'});
+
+        cli.action.start('Installing ' + packageAlias);
+
         // TODO: error handling
         // const { stdout, stderr } = await exec('sfdx force:package:install ... --json');
-        await exec('sfdx force:package:install --package="' + packageAlias + '" --wait=10 --json');
-        console.log(packageAlias + ' Installed');
+        await exec('sfdx force:package:install --package="' + packageAlias + '" --installationkey="' + installationKey + '" --wait=10 --json');
+        cli.action.stop(packageAlias + ' installed');
       }
+      console.log('Packages installed successfully');
     } else {
       // TODO: should it display any message?
     }
-    cli.action.stop();
   }
 };
 
