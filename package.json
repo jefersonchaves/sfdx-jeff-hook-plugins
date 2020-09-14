@@ -24,7 +24,7 @@
     "globby": "^11",
     "mocha": "^5",
     "nyc": "^15",
-    "ts-node": "^8",
+    "ts-node": "^9",
     "tslint": "^5"
   },
   "engines": {
