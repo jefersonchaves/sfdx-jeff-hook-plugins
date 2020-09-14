@@ -25,7 +25,7 @@
     "mocha": "^5",
     "nyc": "^15",
     "ts-node": "^9",
-    "tslint": "^5"
+    "tslint": "^6"
   },
   "engines": {
     "node": ">=10.0.0"
