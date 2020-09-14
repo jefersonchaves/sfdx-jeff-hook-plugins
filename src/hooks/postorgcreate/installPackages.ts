@@ -1,8 +1,11 @@
 import { Command, Hook } from '@oclif/config';
 import { SfdxProject } from '@salesforce/core';
+import { exec } from 'child_process';
 import cli from 'cli-ux';
 import * as fs from 'fs-extra';
-import * as util from 'util';
+import { lookpath } from 'lookpath';
+import { promisify } from 'util';
+const execPromise = promisify(exec);
 
 // tslint:disable-next-line: no-any
 type HookFunction = (this: Hook.Context, options: HookOptions) => any;
@@ -28,8 +31,6 @@ type HookOptions = {
 };
 
 export const hook: HookFunction = async options => {
-  const exec = util.promisify(require('child_process').exec);
-
   console.log('PostOrgCreate Hook Running');
 
   if (options.result) {
@@ -37,17 +38,19 @@ export const hook: HookFunction = async options => {
 
     if (project.packageAliases) {
       console.log('Installing packages');
-      for (const packageAlias of Object.keys(project.packageAliases)) {
-        // TODO: retrieve installation key, maybe config to allow specialized retrieval?
-        // This won't work on VsCode
-        const installationKey = await cli.prompt('What is the installation key for ' + packageAlias + '?', {type: 'mask'});
+      for (const packageAlias of filterPackageVersionIds(project)) {
+        const installationKey = await findInstallationKey(packageAlias);
 
-        cli.action.start('Installing ' + packageAlias);
+        console.log(`installationKey: ${installationKey}`);
 
+        cli.action.start(`Installing ${packageAlias}`);
+
+        const sfdxInstallationKeyArg = `--installationkey="${installationKey}"`;
+        const sfdxPackageInstallCommand = `sfdx force:package:install --package="${packageAlias}" ${installationKey == null ? '' : `${sfdxInstallationKeyArg}`} --wait=10 --json`;
         // TODO: error handling
         // const { stdout, stderr } = await exec('sfdx force:package:install ... --json');
-        await exec('sfdx force:package:install --package="' + packageAlias + '" --installationkey="' + installationKey + '" --wait=10 --json');
-        cli.action.stop(packageAlias + ' installed');
+        await execPromise(sfdxPackageInstallCommand);
+        cli.action.stop(`${packageAlias} installed`);
       }
       console.log('Packages installed successfully');
     } else {
@@ -64,4 +67,26 @@ async function readSfdxProject() {
   const projectFile = await sfdxProject.retrieveSfdxProjectJson(isGlobalProject);
   const project = await fs.readJson(projectFile.getPath());
   return project;
+}
+
+async function findInstallationKey(packageAlias: string): Promise<string> {
+  const pathInstallationKeyUtil = await lookpath('sfdx-installation-key');
+  let installationKey;
+  if (pathInstallationKeyUtil) {
+    const { stdout } = await execPromise(pathInstallationKeyUtil);
+    installationKey = stdout;
+  }
+  return installationKey;
+}
+
+function filterPackageVersionIds(project) : string[] {
+  const versionIds: string[] = [];
+  for (const packageAlias of Object.keys(project.packageAliases)) {
+    if (project.packageAliases[packageAlias]) {
+      if (project.packageAliases[packageAlias].startsWith('04t')) {
+        versionIds.push(packageAlias);
+      }
+    }
+  }
+  return versionIds;
 }
