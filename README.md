@@ -39,9 +39,9 @@ Verify the CLI is installed
   $ sfdx (-v | --version)
 Install the plugin
   $ sfdx plugins:install sfdx-jeff-hook-plugins
-To run a command
-  $ sfdx [command]
 ```
+So, when you run `sfdx force:org:create`, then it will attempt to install the packages defined on `packageAliases`.
+The installation key will be determined trying to use `sfdx-installation-key` sending the package alias as argument, if found in path. (the goal is to bring convenience but use convention over configuration)
 
 To build the plugin locally, make sure to have yarn installed and run the following commands:
 

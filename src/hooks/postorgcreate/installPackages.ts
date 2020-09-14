@@ -71,7 +71,7 @@ async function findInstallationKey(packageAlias: string): Promise<string> {
   const pathInstallationKeyUtil = await lookpath('sfdx-installation-key');
   let installationKey;
   if (pathInstallationKeyUtil) {
-    const { stdout } = await execPromise(pathInstallationKeyUtil);
+    const { stdout } = await execPromise(`${pathInstallationKeyUtil} ${packageAlias}`);
     installationKey = stdout;
   }
   return installationKey;
