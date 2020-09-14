@@ -41,8 +41,6 @@ export const hook: HookFunction = async options => {
       for (const packageAlias of filterPackageVersionIds(project)) {
         const installationKey = await findInstallationKey(packageAlias);
 
-        console.log(`installationKey: ${installationKey}`);
-
         cli.action.start(`Installing ${packageAlias}`);
 
         const sfdxInstallationKeyArg = `--installationkey="${installationKey}"`;
