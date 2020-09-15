@@ -2,8 +2,8 @@ import { exec } from 'child_process';
 import { promisify } from 'util';
 import { Command, Hook } from '@oclif/config';
 import { SfdxProject } from '@salesforce/core';
+import { JsonMap } from '@salesforce/ts-types';
 import cli from 'cli-ux';
-import * as fs from 'fs-extra';
 import { lookpath } from 'lookpath';
 const execPromise = promisify(exec);
 
@@ -30,11 +30,11 @@ type HookOptions = {
   result?: PostOrgCreateResult;
 };
 
-export const hook: HookFunction = async (options) => {
+export const hook: HookFunction = async (options): Promise<void> => {
   console.log('PostOrgCreate Hook Running');
 
   if (options.result) {
-    const project = await readSfdxProject();
+    const project: JsonMap = await readSfdxProject();
 
     if (project.packageAliases) {
       console.log('Installing packages');
@@ -61,19 +61,15 @@ export const hook: HookFunction = async (options) => {
 
 export default hook;
 
-async function readSfdxProject() {
-  const sfdxProject = await SfdxProject.resolve();
-  const isGlobalProject = false;
-  const projectFile = await sfdxProject.retrieveSfdxProjectJson(
-    isGlobalProject
-  );
-  const project = await fs.readJson(projectFile.getPath());
-  return project;
+async function readSfdxProject(): Promise<JsonMap> {
+  const project: SfdxProject = await SfdxProject.resolve();
+  const projectJson: JsonMap = await project.resolveProjectConfig();
+  return projectJson;
 }
 
 async function findInstallationKey(packageAlias: string): Promise<string> {
   const pathInstallationKeyUtil = await lookpath('sfdx-installation-key');
-  let installationKey;
+  let installationKey: string;
   if (pathInstallationKeyUtil) {
     const { stdout } = await execPromise(
       `${pathInstallationKeyUtil} ${packageAlias}`
@@ -83,11 +79,11 @@ async function findInstallationKey(packageAlias: string): Promise<string> {
   return installationKey;
 }
 
-function filterPackageVersionIds(project): string[] {
+function filterPackageVersionIds(project: JsonMap): string[] {
   const versionIds: string[] = [];
   for (const packageAlias of Object.keys(project.packageAliases)) {
     if (project.packageAliases[packageAlias]) {
-      if (project.packageAliases[packageAlias].startsWith('04t')) {
+      if ((project.packageAliases[packageAlias] as string).startsWith('04t')) {
         versionIds.push(packageAlias);
       }
     }
