@@ -12,18 +12,22 @@ https://github.com/typescript-eslint/tslint-to-eslint-config/blob/master/docs/FA
 Happy linting! 💖
 */
 module.exports = {
-    "env": {
-        "es6": true,
-        "node": true
-    },
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "project": "tsconfig.json",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "@typescript-eslint",
-        "@typescript-eslint/tslint"
+  env: {
+    es6: true,
+    node: true,
+  },
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    project: "tsconfig.json",
+    sourceType: "module",
+  },
+  plugins: ["@typescript-eslint", "@typescript-eslint/tslint", "prettier"],
+  extends: ["eslint-config-salesforce-typescript", "prettier"],
+  rules: {
+    quotes: [
+      "error",
+      "single",
+      { avoidEscape: true, allowTemplateLiterals: false },
     ],
-    "extends": ['eslint-config-salesforce-typescript']
+  },
 };

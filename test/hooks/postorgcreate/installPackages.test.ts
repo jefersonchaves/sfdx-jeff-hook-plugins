@@ -1,4 +1,4 @@
-import assert = require('assert');
+import * as assert from 'assert';
 
 describe('postorgcreate hook install', () => {
   // throw new Error('');
