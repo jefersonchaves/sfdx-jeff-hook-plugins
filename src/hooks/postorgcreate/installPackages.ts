@@ -72,7 +72,7 @@ async function findInstallationKey(packageAlias: string): Promise<string> {
   let installationKey: string;
   if (pathInstallationKeyUtil) {
     const { stdout } = await execPromise(
-      `${pathInstallationKeyUtil} ${packageAlias}`
+      `${pathInstallationKeyUtil} "${packageAlias}"`
     );
     installationKey = stdout;
   }
