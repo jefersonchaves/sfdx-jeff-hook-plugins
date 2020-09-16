@@ -1,7 +1,7 @@
 {
   "name": "sfdx-jeff-hook-plugins",
   "description": "Salesforce CLI hooks to perform deployment of package after org creation made by Jeferson Chaves.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Jeferson Chaves",
   "bugs": "https://github.com/jefersonchaves/sfdx-jeff-hook-plugins/issues",
   "dependencies": {
