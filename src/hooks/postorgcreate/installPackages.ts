@@ -46,7 +46,7 @@ export const hook: HookFunction = async (options): Promise<void> => {
         const sfdxInstallationKeyArg = `--installationkey="${installationKey}"`;
         const sfdxPackageInstallCommand = `sfdx force:package:install --package="${packageAlias}" ${
           installationKey == null ? '' : `${sfdxInstallationKeyArg}`
-        } --wait=10 --json`;
+        } --wait=120 --noprompt --securitytype=AllUsers --wait=120 --json`;
         // TODO: error handling
         // const { stdout, stderr } = await exec('sfdx force:package:install ... --json');
         await execPromise(sfdxPackageInstallCommand);
