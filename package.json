@@ -10,6 +10,8 @@
     "@oclif/errors": "^1",
     "@salesforce/command": "^2",
     "@salesforce/core": "^2",
+    "@salesforce/ts-types": "^1.4.3",
+    "cli-ux": "^5.5.0",
     "lookpath": "^1.1.0",
     "tslib": "^2"
   },
