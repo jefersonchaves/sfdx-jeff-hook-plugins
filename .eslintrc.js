@@ -21,7 +21,7 @@ module.exports = {
     project: "tsconfig.json",
     sourceType: "module",
   },
-  plugins: ["@typescript-eslint", "@typescript-eslint/tslint", "prettier"],
+  plugins: ["@typescript-eslint", "prettier"],
   extends: ["eslint-config-salesforce-typescript", "prettier"],
   rules: {
     quotes: [
