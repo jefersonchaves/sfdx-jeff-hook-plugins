@@ -1,3 +1,7 @@
 {
-    "recommendations": ["dbaeumer.vscode-eslint", "hbenl.vscode-mocha-test-adapter"]
+    "recommendations": [
+        "eamodio.gitlens",
+        "dbaeumer.vscode-eslint",
+        "hbenl.vscode-mocha-test-adapter"
+    ]
 }
