@@ -18,11 +18,19 @@ module.exports = {
   },
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    project: "tsconfig.json",
+    project: [
+      './tsconfig.eslint.json'
+    ],
     sourceType: "module",
   },
   plugins: ["@typescript-eslint", "prettier"],
-  extends: ["eslint-config-salesforce-typescript", "prettier"],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    "eslint-config-salesforce-typescript", 
+    "prettier",
+    "prettier/@typescript-eslint"
+  ],
   rules: {
     quotes: [
       "error",

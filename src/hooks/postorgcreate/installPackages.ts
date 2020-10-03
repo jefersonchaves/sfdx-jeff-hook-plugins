@@ -10,8 +10,10 @@ import { lookpath } from 'lookpath';
 // import { UX as commandUx } from '@salesforce/command';
 const execPromise = promisify(exec);
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type HookFunction = (this: Hook.Context, options: HookOptions) => any;
+// import * as assert from 'assert';
+import { error } from '@oclif/errors';
+
+type HookFunction = (this: Hook.Context, options: HookOptions) => unknown;
 
 type PostOrgCreateResult = {
   accessToken: string;
@@ -59,36 +61,43 @@ type SubscriberPackage = {
 
 export const hook: HookFunction = async (options): Promise<void> => {
   // const UX = await commandUx.create();
+  // eslint-disable-next-line no-console
   console.log('PostOrgCreate Hook Running');
 
-  if (options.result) {
-    const project: JsonMap = await readSfdxProject();
-    if (project.packageAliases) {
-      console.log('Installing packages');
-      for (const packageInformation of filterPackageVersionIds(project)) {
-        const installationKey = await findInstallationKey(packageInformation);
+  try {
+    if (options.result) {
+      const project: JsonMap = await readSfdxProject();
+      if (project.packageAliases) {
+        // eslint-disable-next-line no-console
+        console.log('Installing packages');
+        for (const packageInformation of filterPackageVersionIds(project)) {
+          const installationKey = await findInstallationKey(packageInformation);
 
-        // TODO: this may replace import cli from 'cli-ux';
-        // const a = await UX.create();
-        // a.startSpinner
-        // const a = new UX()
-        cli.action.start(`Installing ${packageInformation.alias}`);
+          // TODO: this may replace import cli from 'cli-ux';
+          // const a = await UX.create();
+          // a.startSpinner
+          // const a = new UX()
+          cli.action.start(`Installing ${packageInformation.alias}`);
 
-        const sfdxInstallationKeyArg = `--installationkey="${installationKey}"`;
-        const sfdxPackageInstallCommand = `sfdx force:package:install --package="${
-          packageInformation.alias
-        }" ${
-          installationKey == null ? '' : `${sfdxInstallationKeyArg}`
-        } --wait=120 --noprompt --securitytype=AllUsers --wait=120 --json`;
-        // TODO: error handling
-        // const { stdout, stderr } = await exec('sfdx force:package:install ... --json');
-        await execPromise(sfdxPackageInstallCommand);
-        cli.action.stop(`${packageInformation.alias} installed`);
+          const sfdxInstallationKeyArg = `--installationkey="${installationKey}"`;
+          const sfdxPackageInstallCommand = `sfdx force:package:install --package="${
+            packageInformation.alias
+          }" ${
+            installationKey == null ? '' : `${sfdxInstallationKeyArg}`
+          } --wait=120 --noprompt --securitytype=AllUsers --wait=120 --json`;
+          // TODO: error handling
+          // const { stdout, stderr } = await exec('sfdx force:package:install ... --json');
+          await execPromise(sfdxPackageInstallCommand);
+          cli.action.stop(`${packageInformation.alias} installed`);
+        }
+        // eslint-disable-next-line no-console
+        console.log('Packages installed successfully');
+      } else {
+        // TODO: should it display any message?
       }
-      console.log('Packages installed successfully');
-    } else {
-      // TODO: should it display any message?
     }
+  } catch (e) {
+    error(e, { exit: 3 });
   }
 };
 

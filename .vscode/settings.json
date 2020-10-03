@@ -22,5 +22,7 @@ Happy linting! 💖
     "search.exclude": {
         "**/lib": true,
         "**/bin": true
-    }
+    },
+    "mochaExplorer.files": "test/**/*.ts",
+    "mochaExplorer.require": "ts-node/register"
 }
