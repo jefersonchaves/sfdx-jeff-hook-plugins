@@ -4,7 +4,7 @@ sfdx-jeff-hook-plugins
 Salesforce CLI hooks to perform deployment of package after org creation
 
 [![Version](https://img.shields.io/npm/v/sfdx-jeff-hook-plugins.svg)](https://npmjs.org/package/sfdx-jeff-hook-plugins)
-![Continuous Integration](https://github.com/jefersonchaves/sfdx-jeff-hook-plugins/workflows/Continuous%20Integration/badge.svg)
+[![Continuous Integration](https://github.com/jefersonchaves/sfdx-jeff-hook-plugins/workflows/Continuous%20Integration/badge.svg)](https://github.com/jefersonchaves/sfdx-jeff-hook-plugins/actions?query=workflow%3A%22Continuous+Integration%22)
 [![Codecov](https://codecov.io/gh/jefersonchaves/sfdx-jeff-hook-plugins/branch/master/graph/badge.svg)](https://codecov.io/gh/jefersonchaves/sfdx-jeff-hook-plugins)
 [![Downloads/week](https://img.shields.io/npm/dw/sfdx-jeff-hook-plugins.svg)](https://npmjs.org/package/sfdx-jeff-hook-plugins)
 [![License](https://img.shields.io/npm/l/sfdx-jeff-hook-plugins.svg)](https://github.com/jefersonchaves/sfdx-jeff-hook-plugins/blob/master/package.json)
