@@ -7,11 +7,11 @@ import { SfdxProject } from '@salesforce/core';
 import { JsonMap } from '@salesforce/ts-types';
 import cli from 'cli-ux';
 import { lookpath } from 'lookpath';
+import { error } from '@oclif/errors';
 // import { UX as commandUx } from '@salesforce/command';
 const execPromise = promisify(exec);
 
 // import * as assert from 'assert';
-import { error } from '@oclif/errors';
 
 type HookFunction = (this: Hook.Context, options: HookOptions) => unknown;
 
@@ -59,17 +59,17 @@ type SubscriberPackage = {
   NamespacePrefix: string;
 };
 
-export const hook: HookFunction = async (options): Promise<void> => {
+export const hook: HookFunction = async function (
+  this,
+  options
+): Promise<void> {
   // const UX = await commandUx.create();
-  // eslint-disable-next-line no-console
-  console.log('PostOrgCreate Hook Running');
-
+  this.log('PostOrgCreate Hook Running');
   try {
     if (options.result) {
       const project: JsonMap = await readSfdxProject();
       if (project.packageAliases) {
-        // eslint-disable-next-line no-console
-        console.log('Installing packages');
+        this.log('Installing packages');
         for (const packageInformation of filterPackageVersionIds(project)) {
           const installationKey = await findInstallationKey(packageInformation);
 
@@ -90,8 +90,7 @@ export const hook: HookFunction = async (options): Promise<void> => {
           await execPromise(sfdxPackageInstallCommand);
           cli.action.stop(`${packageInformation.alias} installed`);
         }
-        // eslint-disable-next-line no-console
-        console.log('Packages installed successfully');
+        this.log('Packages installed successfully');
       } else {
         // TODO: should it display any message?
       }
