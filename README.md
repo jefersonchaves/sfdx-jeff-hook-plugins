@@ -19,7 +19,7 @@ $ npm install -g sfdx-jeff-hook-plugins
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-sfdx-jeff-hook-plugins/0.1.1 darwin-x64 node-v12.18.4
+sfdx-jeff-hook-plugins/0.1.2 darwin-x64 node-v12.19.0
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND

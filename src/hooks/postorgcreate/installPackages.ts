@@ -71,7 +71,10 @@ export const hook: HookFunction = async function (
       if (project.packageAliases) {
         this.log('Installing packages');
         for (const packageInformation of filterPackageVersionIds(project)) {
-          const installationKey = await findInstallationKey(packageInformation);
+          const installationKey = await findInstallationKey(
+            packageInformation,
+            options.result.username
+          );
 
           // TODO: this may replace import cli from 'cli-ux';
           // const a = await UX.create();
@@ -84,7 +87,9 @@ export const hook: HookFunction = async function (
             packageInformation.alias
           }" ${
             installationKey == null ? '' : `${sfdxInstallationKeyArg}`
-          } --wait=120 --noprompt --securitytype=AllUsers --wait=120 --json`;
+          } --wait=120 --noprompt --securitytype=AllUsers --wait=120 --json --targetusername=${
+            options.result.username
+          }`;
           // TODO: error handling
           // const { stdout, stderr } = await exec('sfdx force:package:install ... --json');
           await execPromise(sfdxPackageInstallCommand);
@@ -109,13 +114,16 @@ async function readSfdxProject(): Promise<JsonMap> {
 }
 
 async function findInstallationKey(
-  packageInformation: PackageInformation
+  packageInformation: PackageInformation,
+  targetusername: string
 ): Promise<string> {
   const subscriberPackageVersion = await retrieveSubscriberPackageVersion(
-    packageInformation
+    packageInformation,
+    targetusername
   );
   const subscriberPackage = await retrieveSubscriberPackage(
-    subscriberPackageVersion.SubscriberPackageId
+    subscriberPackageVersion.SubscriberPackageId,
+    targetusername
   );
 
   const installationKeyUtilName = 'sfdx-installation-key';
@@ -187,13 +195,15 @@ function filterPackageVersionIds(project: JsonMap): PackageInformation[] {
 
 // TODO: this might be a catch 22 (cannot retrieve package version because requires installation key)
 async function retrieveSubscriberPackageVersion(
-  packageInformation: PackageInformation
+  packageInformation: PackageInformation,
+  targetusername: string
 ): Promise<SubscriberPackageVersion> {
   const { stdout } = await execPromise(
     `sfdx \
       force:data:soql:query \
       --json \
       --usetoolingapi \
+      --targetusername=${targetusername} \
       --query "
         SELECT Name, MajorVersion, MinorVersion, PatchVersion, BuildNumber, SubscriberPackageId, PublisherName, AppExchangePublisherName
         FROM SubscriberPackageVersion
@@ -213,12 +223,14 @@ async function retrieveSubscriberPackageVersion(
 }
 
 async function retrieveSubscriberPackage(
-  packageId: string
+  packageId: string,
+  targetusername: string
 ): Promise<SubscriberPackage> {
   const { stdout } = await execPromise(
     `sfdx force:data:soql:query \
       --json \
       --usetoolingapi \
+      --targetusername=${targetusername} \
       --query " \
           SELECT Name, NamespacePrefix 
           FROM SubscriberPackage 
