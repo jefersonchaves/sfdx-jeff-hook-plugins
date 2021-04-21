@@ -2723,9 +2723,9 @@ lolex@^5.0.1:
     "@sinonjs/commons" "^1.7.0"
 
 lookpath@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/lookpath/-/lookpath-1.1.0.tgz#932d68371a2f0b4a5644f03d6a2b4728edba96d2"
-  integrity sha512-B9NM7XpVfkyWqfOBI/UW0kVhGw7pJztsduch+1wkbYDi90mYK6/InFul3lG0hYko/VEcVMARVBJ5daFRc5aKCw==
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/lookpath/-/lookpath-1.2.0.tgz#5fccf91497acec085e66d98cb12446c21fe665ae"
+  integrity sha512-cUl+R2bGJcSJiHLVKzGHRTYTBhudbHIgd7s63gfGHteaz0BBKEEz2yw2rgbxZAFze92KlbkiWzL1ylYOmqIPVA==
 
 lru-cache@^6.0.0:
   version "6.0.0"
