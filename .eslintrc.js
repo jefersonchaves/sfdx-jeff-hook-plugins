@@ -26,10 +26,8 @@ module.exports = {
   plugins: ["@typescript-eslint", "prettier"],
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
     "eslint-config-salesforce-typescript", 
-    "prettier",
-    "prettier/@typescript-eslint"
+    "plugin:prettier/recommended"
   ],
   rules: {
     quotes: [
