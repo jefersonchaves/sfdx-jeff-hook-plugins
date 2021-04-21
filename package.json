@@ -19,7 +19,7 @@
     "@oclif/dev-cli": "^1",
     "@oclif/plugin-help": "^3",
     "@oclif/test": "^1",
-    "@salesforce/dev-config": "2.0.0",
+    "@salesforce/dev-config": "2.1.0",
     "@salesforce/prettier-config": "^0.0.1",
     "@salesforce/ts-sinon": "^1.2.3",
     "@types/chai": "^4",
