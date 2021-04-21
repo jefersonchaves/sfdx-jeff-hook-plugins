@@ -387,10 +387,10 @@
     mkdirp "1.0.4"
     sfdx-faye "^1.0.9"
 
-"@salesforce/dev-config@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@salesforce/dev-config/-/dev-config-2.0.0.tgz#388d71830e63078a835a844b51d2661c73ac851e"
-  integrity sha512-CwPeiNrH7bULxjr7RmvStR3uPWu3aMl35mQrUNip2pTMvXQ4QmcDowWqx5MSaLj03JIQaoxnt6g8qWlhyOmxUQ==
+"@salesforce/dev-config@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@salesforce/dev-config/-/dev-config-2.1.0.tgz#78efdf5d660d7cb839d9cafa036f9882741dc6bc"
+  integrity sha512-I+zrptt8zI1jbP3TVA6g7i3quuh71tPky8gwCsXaQ2X9ea1xbeAslN4YjWfgqbY5SaxJhqP979oxFADlH+OehQ==
 
 "@salesforce/kit@^1.2.2", "@salesforce/kit@^1.5.0":
   version "1.5.0"
@@ -2723,9 +2723,9 @@ lolex@^5.0.1:
     "@sinonjs/commons" "^1.7.0"
 
 lookpath@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/lookpath/-/lookpath-1.1.0.tgz#932d68371a2f0b4a5644f03d6a2b4728edba96d2"
-  integrity sha512-B9NM7XpVfkyWqfOBI/UW0kVhGw7pJztsduch+1wkbYDi90mYK6/InFul3lG0hYko/VEcVMARVBJ5daFRc5aKCw==
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/lookpath/-/lookpath-1.2.0.tgz#5fccf91497acec085e66d98cb12446c21fe665ae"
+  integrity sha512-cUl+R2bGJcSJiHLVKzGHRTYTBhudbHIgd7s63gfGHteaz0BBKEEz2yw2rgbxZAFze92KlbkiWzL1ylYOmqIPVA==
 
 lru-cache@^6.0.0:
   version "6.0.0"
