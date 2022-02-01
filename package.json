@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
-    "@oclif/plugin-help": "^3",
+    "@oclif/plugin-help": "^5",
     "@oclif/test": "^1",
     "@salesforce/dev-config": "2.1.0",
     "@salesforce/prettier-config": "^0.0.1",
