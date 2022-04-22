@@ -19,6 +19,6 @@ jobs:
       - name: Generate Code Coverage Info
         run: yarn run nyc report --reporter text-lcov > coverage.lcov
       - name: Upload Code Coverage
-        uses: codecov/codecov-action@v2.0.2
+        uses: codecov/codecov-action@v3.1.0
         with:
           file: coverage.lcov
